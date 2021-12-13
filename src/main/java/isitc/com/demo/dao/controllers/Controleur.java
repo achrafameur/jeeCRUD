@@ -79,6 +79,14 @@ public class Controleur {
 		return "redirect:/app/products";
 	}
 	
+		
+	@GetMapping("/detailsProd/{id}")
+	public String ProductDetails(@PathVariable final int id) {
+		Produit p = gestpr.getProduitById(id);
+		System.out.print(p);
+		return "proDetails";
+	}
+	
 	
 	@PostMapping("/recherche.php")
 	public String rechercheProduit( String mc , Model m ) {
@@ -114,6 +122,12 @@ public class Controleur {
 	public String deleteCategorie(@PathVariable final int id) {
 		gestcat.deleteCategorie(id);
 		return "redirect:/app/categories";
+	}
+	
+	@GetMapping("/detailsCat/{id}")
+	public String CategorieDetails(@PathVariable final int id,Model m ) {
+		m.addAttribute("objet",gestcat.getCategorie(id));
+		return "catDetails";
 	}
 	
 	@PostMapping("/rechercheCat.php")
