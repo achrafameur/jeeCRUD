@@ -12,4 +12,9 @@ public interface produitRepository extends JpaRepository<Produit , Integer> {
 	
 	public List<Produit> findByNomContains(String mc); 
 	
+		
+	@RestResource(path="/rpnc")
+	@Query("select p from Produit p where p.categorie.nom=:nomC")
+	public List<Produit> rechercherProduitsParNomCategorie(@Param("nomC") String nomC);
+	
 }
